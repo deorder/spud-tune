@@ -16,7 +16,8 @@ gcc `pkg-config --cflags --libs MagickWand` spud_from_header_png.c -o spud_from_
 
 ## Usage
 
-First unpack the SPUD archive using a Zip-file unpacker (unzip, 7zip) which you can find at:
+First unpack the SPUD archive using a Zip-file unpacker (unzip, 7zip).
+You can find the archive to unpack at:
 
 ```
 C:/<Username>/AppData/Local/Oculus/Spud/HMD_WMHDXXXXXXXXXXX.spud
