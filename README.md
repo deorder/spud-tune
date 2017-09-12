@@ -16,6 +16,12 @@ gcc `pkg-config --cflags --libs MagickWand` spud_from_header_png.c -o spud_from_
 
 ## Usage
 
+First unpack the SPUD archive using a Zip-file unpacker (unzip, 7zip) which you can find at:
+
+```
+C:/<Username>/AppData/Local/Oculus/Spud/HMD_WMHDXXXXXXXXXXX.spud
+```
+
 The following will create a ".png" and ".header" file from a ".ohctfu" or ".ohctfm" file: 
 ```
 ./spud_to_header_png samples/Global/XXXXXXXXXXXXXX-red_25-20170710_SinglePixel.ohctfm
