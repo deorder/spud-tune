@@ -15,38 +15,38 @@
 
 #if defined(_WIN32) || defined(__WIN32) || defined(__WIN32__) || \
     defined(_WIN64) || defined(__WIN64) || defined(__WIN64__)
-#	define NOMINMAX
-#	define WIN32_LEAN_AND_MEAN
-#	define _CRT_SECURE_NO_WARNINGS
-#	include <windows.h>
+# define NOMINMAX
+# define WIN32_LEAN_AND_MEAN
+# define _CRT_SECURE_NO_WARNINGS
+# include <windows.h>
 #endif
 
 #include <wand/MagickWand.h>
 #define MagickThrowException(wand) { \
-	description = MagickGetException(wand, &severity); \
-	(void)fprintf(stderr,"%s %s %lu %s\n", GetMagickModule(), description); \
-	free(description); \
-	exit(EXIT_FAILURE); \
+  description = MagickGetException(wand, &severity); \
+  (void)fprintf(stderr,"%s %s %lu %s\n", GetMagickModule(), description); \
+  free(description); \
+  exit(EXIT_FAILURE); \
 }
 
 void print_usage(int argc, char **argv)
 {
-	printf("Usage: %s [OPTIONS]... output_filename.<ohctfm|ohctfu>\n", argv[0]);
-	printf("  --help	(This help message)\n");
-	printf("\n");
+  printf("Usage: %s [OPTIONS]... output_filename.<ohctfm|ohctfu>\n", argv[0]);
+  printf("  --help  (This help message)\n");
+  printf("\n");
 }
 
 int main(int argc, char **argv) 
 {
   char *description;
-	unsigned int status;
-	ExceptionType severity;
+  unsigned int status;
+  ExceptionType severity;
 
   FILE *header_file = NULL;
   FILE *output_file = NULL;
 
-	char *input_filename = NULL;
-	char *input_extension = NULL;
+  char *input_filename = NULL;
+  char *input_extension = NULL;
 
   unsigned char image_path[2048] = "";
   unsigned char header_path[2048] = "";
@@ -59,41 +59,41 @@ int main(int argc, char **argv)
   unsigned char image_header[20] = "";
   unsigned char image_data[1200 * 1200] = ""; /* Allocate enough space on stack */
 
-	const char *option_string = "h?";
+  const char *option_string = "h?";
 
-	int option_index = 0, option_value = 0;
+  int option_index = 0, option_value = 0;
 
-	struct option option_list[] = {
-		{"help",		no_argument,		NULL,	'h'},
-		{NULL,			0,			NULL,	0}
-	};
+  struct option option_list[] = {
+    {"help",    no_argument,    NULL, 'h'},
+    {NULL,      0,      NULL, 0}
+  };
 
-	printf("SpudFromHeaderPNG (Build "__TIME__" "__DATE__")\n");
-	printf("Copyright (c) 2017, Deorder. All rights reserved.\n\n");
+  printf("SpudFromHeaderPNG (Build "__TIME__" "__DATE__")\n");
+  printf("Copyright (c) 2017, Deorder. All rights reserved.\n\n");
 
-	/* Handle arguments */
-	while(option_value != -1)
-	{
-		option_value = getopt_long(argc, argv, option_string, option_list, &option_index);
+  /* Handle arguments */
+  while(option_value != -1)
+  {
+    option_value = getopt_long(argc, argv, option_string, option_list, &option_index);
 
-		switch(option_value)
-		{
-			case 'h':
-			case '?':
+    switch(option_value)
+    {
+      case 'h':
+      case '?':
       print_usage(argc, argv); 
       exit(EXIT_SUCCESS);
-			break;
+      break;
 
-			case 0:
-			case -1:
-			/* Do nothing */
-			break;
+      case 0:
+      case -1:
+      /* Do nothing */
+      break;
 
-			default:
-			abort();
-			break;
-		}
-	}
+      default:
+      abort();
+      break;
+    }
+  }
 
   if(optind < argc && argc - optind == 1) {
     input_filename = argv[optind];
@@ -118,8 +118,8 @@ int main(int argc, char **argv)
     exit(EXIT_FAILURE);
   }
 
-	/* Initialize magick */
-	MagickWandGenesis();
+  /* Initialize magick */
+  MagickWandGenesis();
 
   /* Create images */
   MagickWand *input_image = NewMagickWand();
@@ -141,7 +141,7 @@ int main(int argc, char **argv)
   fread(image_header, 1, 20, header_file);
   fclose(header_file);
 
-	/* Save ohctfm/ohctfu file */
+  /* Save ohctfm/ohctfu file */
   snprintf(output_path, sizeof(output_path), "%s.new", input_filename);
   output_file = fopen(output_path, "wb");
   fwrite(image_header, 1, 20, output_file);
@@ -152,8 +152,8 @@ int main(int argc, char **argv)
   /* Destroy images */
   DestroyMagickWand(input_image);
 
-	/* Deinitialize magick */
-	MagickWandTerminus();
+  /* Deinitialize magick */
+  MagickWandTerminus();
 
-	return(EXIT_SUCCESS);
+  return(EXIT_SUCCESS);
 }
