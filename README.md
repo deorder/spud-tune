@@ -12,7 +12,7 @@ gcc `pkg-config --cflags --libs MagickWand` spud_from_header_png.c -o spud_from_
 
 ## Dependencies
 
-- ImageMagick (https://www.imagemagick.org/script/index.php)
+- ImageMagick 6 (not 7 for now) (https://www.imagemagick.org/script/index.php)
 
 ## Usage
 
