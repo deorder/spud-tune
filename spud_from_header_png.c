@@ -1,18 +1,3 @@
-#include <time.h>
-#include <wchar.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include <assert.h>
-#include <dirent.h>
-#include <signal.h>
-#include <string.h>
-#include <getopt.h>
-#include <locale.h>
-#include <sys/types.h>
-
 #include "common.h"
 
 void print_usage(int argc, char **argv)
