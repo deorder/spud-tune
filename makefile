@@ -8,7 +8,7 @@ PKGCONFIG ?= pkg-config
 GITVERSION := $(shell ${GIT} describe --abbrev=4 --dirty --always --tags)
 
 CFLAGS = -I${TOOLCHAIN}/include -I${TOOLCHAIN}/usr/include $(shell ${PKGCONFIG} --cflags MagickWand)
-LDFLAGS = -L${TOOLCHAIN}/lib -L${TOOLCHAIN}/usr/lib $(shell ${PKGCONFIG} --static --libs MagickWand)
+LDFLAGS = -L${TOOLCHAIN}/lib -L${TOOLCHAIN}/usr/lib $(shell ${PKGCONFIG} --libs MagickWand)
 
 BINARIES = spud_from_header_png${EXTENSION} spud_to_header_png${EXTENSION}
 
