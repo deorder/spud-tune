@@ -3,16 +3,23 @@ Convert Oculus Rift SPUD files (ohctfu/ohctfm) from / to PNG
 
 ## Compile on Linux
 
-First make sure you have the ImageMagick development files. Then run:
+First make sure you have the ImageMagick development files, then run:
 
 ```
-gcc `pkg-config --cflags --libs MagickWand` spud_to_header_png.c -o spud_to_header_png
-gcc `pkg-config --cflags --libs MagickWand` spud_from_header_png.c -o spud_from_header_png
+make
+```
+
+## Compile on Linux for Windows
+
+First make sure you have the ImageMagick development files and MinGW, then run:
+
+```
+make TOOLCHAIN=/usr/x86_64-w64-mingw32/ CC=x86_64-w64-mingw32-gcc STRIP=x86_64-w64-mingw32-strip PKGCONFIG=x86_64-w64-mingw32-pkg-config EXTENSION=.exe archive-windows
 ```
 
 ## Dependencies
 
-- ImageMagick 6 (not 7 for now) (https://www.imagemagick.org/script/index.php)
+- ImageMagick 7 (https://www.imagemagick.org/script/index.php)
 
 ## Usage
 
